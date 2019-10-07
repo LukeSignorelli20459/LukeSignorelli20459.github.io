@@ -55,17 +55,25 @@ box.text(points);               // changes the text of the box to display the va
 			
 			function update() {
 				// TODO 3 / 6 / 7 / 8
-				position += speed;    // increment position by speed on every update
+				position += speed * direction;    // increment position by speed on every update
                 console.log("new position: " + position);
                 
                 if(position > boardWidth) {
-                console.log("Right Wall Hit");
+                    console.log("Right Wall Hit");
+                    direction = -1;
+                    console.log(direction);
                 }
                 
+               
+                
                 box.css('left', position);      // set the 'left' CSS property of the box to the new value of position
-			
-			};
 
+                if(position < 0) {
+                    console.log("Left Wall Hit");
+                    direction = 1;
+                    console.log(direction);
+                }
+            }
 
 			
 			function handleBoxClick() {
