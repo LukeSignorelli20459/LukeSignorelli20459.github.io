@@ -24,10 +24,10 @@ var background = function (window) {
         
         // container which will be returned
         var background;
-        var tree;
         
         // ANIMATION VARIABLES HERE:
-        
+        var tree;
+        var buildings = [];
      
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
@@ -56,7 +56,16 @@ for(var i=0;i<100;i++) {
                 background.addChild(moon);
             // TODO: 5 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             
-            
+            var buildingHeight = 275;
+            var building;
+            for(var i=0;i<6;++i) {
+                building = draw.bitmap('https://res.cloudinary.com/practicaldev/image/fetch/s--PXEWdxtm--/c_fill,f_auto,fl_progressive,h_320,q_auto,w_320/https://thepracticaldev.s3.amazonaws.com/uploads/organization/profile_image/866/e9171485-33eb-4e1c-ae08-0bb075e3f306.png');
+                building.x = 255*i;
+                building.y = groundY-buildingHeight;
+                background.addChild(building);
+                buildings.push(building);
+            }
+
             // TODO 4: Part 1 - Add a tree
             tree = draw.bitmap('https://www.models-resource.com/resources/big_icons/18/17349.png');
             tree.x = 0;
@@ -75,14 +84,22 @@ for(var i=0;i<100;i++) {
             var groundY = ground.y;
             
             // TODO 4: Part 2 - Move the tree!
-            tree.x = tree.x -1 ;
+            tree.x = tree.x -2 ;
             if(tree.x < -200) {
             tree.x = canvasWidth;
             }
             
             // TODO 5: Part 2 - Parallax
-            
+            for(var i = 0; i < buildings.length; i++){
+                var building = buildings[i];
+                console.log(building.name);
+                building.x = building.x -0.70 ;
+                if(building.x < -200) {
+                    building.x = canvasWidth;
+                }
+            }
 
+                
         } // end of update function - DO NOT DELETE
         
         
